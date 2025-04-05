@@ -19,7 +19,7 @@ cd ~/ros2_ws/src
 2. Clone this package into your workspace:
 ```bash
 # Assuming you're packaging this code in a git repository
-git clone <repository_url> conveyor_sim_ros2
+git clone https://github.com/mzahana/conveyor_sim_ros2.git
 ```
 
 3. Build the package:
