@@ -4,6 +4,7 @@
 
 This Python script generates a Gazebo model of a conveyor belt with customizable dimensions and material properties. You can specify options such as the belt’s length, width, thickness, height of the legs, and custom material textures for the belt, rollers, and legs. Additionally, the script supports both standard and Physically-Based Rendering (PBR) material setups using texture maps for albedo, metalness, roughness, and normal maps.
 
+![custom conveyor](resource/conveyor.png)
 ## Table of Contents
 
 - [Features](#features)
