@@ -2,6 +2,7 @@
 
 This ROS 2 package provides a simulation of a conveyor belt in Gazebo Harmonic with ROS 2 interface for control.
 
+![custom conveyor](resource/conveyor.png)
 ## Prerequisites
 
 - ROS 2 (Humble or later recommended)
