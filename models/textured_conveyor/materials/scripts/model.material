@@ -1,0 +1,56 @@
+material UrbanTile/textured_conveyor_Belt
+{
+  technique
+  {
+    pass
+    {
+      ambient 1.0 1.0 1.0 1.0
+      diffuse 1.0 1.0 1.0 1.0
+      specular 1.0 1.0 1.0 1.0 12.5
+      
+      texture_unit
+      {
+        texture Leather032_1K-PNG_Color.png
+      }
+      
+    }
+  }
+}
+
+material UrbanTile/textured_conveyor_Roller
+{
+  technique
+  {
+    pass
+    {
+      ambient 1.0 1.0 1.0 1.0
+      diffuse 1.0 1.0 1.0 1.0
+      specular 1.0 1.0 1.0 1.0 12.5
+      
+      texture_unit
+      {
+        texture Metal055A_1K-PNG_Color.png
+      }
+      
+    }
+  }
+}
+
+material UrbanTile/textured_conveyor_Leg
+{
+  technique
+  {
+    pass
+    {
+      ambient 1.0 1.0 1.0 1.0
+      diffuse 1.0 1.0 1.0 1.0
+      specular 1.0 1.0 1.0 1.0 12.5
+      
+      texture_unit
+      {
+        texture Metal055A_1K-PNG_Color.png
+      }
+      
+    }
+  }
+}

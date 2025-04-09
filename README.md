@@ -66,3 +66,6 @@ The package includes a YAML configuration for the ROS-Gazebo bridge located at `
    - Gazebo topic: `/model/conveyor/link/base_link/track_cmd_vel` (gz.msgs.Double)
 
 You can modify this YAML file to add more bridges or change the topic mappings to suit your needs.
+
+## Conveyor Generation Script
+There is a convenience python script ([conveyor_generator.py](scripts/conveyor_generator.py)) which generates SDF model of a custom size (and optionaly with custom texture) conveyor. The details can be found the [conveyor_generator.md](conveyor_generator.md)
