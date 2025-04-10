@@ -13,6 +13,11 @@
             name="gz::sim::systems::Physics">
     </plugin>
     <plugin
+      filename="gz-sim-sensors-system"
+      name="gz::sim::systems::Sensors">
+      <render_engine>ogre2</render_engine>
+    </plugin>
+    <plugin
             filename="gz-sim-user-commands-system"
             name="gz::sim::systems::UserCommands">
     </plugin>
@@ -48,7 +53,14 @@
 
     <include>
       <uri>model://simple_conveyor_box</uri>
-      <pose>0 0 2 0 0 0</pose>
+      <pose>0 0 1.0 0 0 0</pose>
+    </include>
+
+    <include>
+      <uri>model://realsense_d435</uri>
+      <!-- <pose>x y z roll pitch yaw</pose> -->
+      <pose>0 0 2.0 1.5707963267948966 0 0</pose>
+      <static>true</static>
     </include>
 
     <!-- GUI plugins - full definitions copied from original file -->

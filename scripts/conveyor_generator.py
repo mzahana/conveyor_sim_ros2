@@ -448,6 +448,8 @@ def create_model_sdf(args, directory, material_names):
     plugin1_link.text = "base_link"
     plugin1_freq = ET.SubElement(plugin1, "odometry_publish_frequency")
     plugin1_freq.text = "1"
+    plugin1_vel_topic = ET.SubElement(plugin1, "velocity_topic")
+    plugin1_vel_topic.text = "/conveyor/cmd_vel"
     
     # W key (forward)
     plugin2 = ET.SubElement(model, "plugin", 
@@ -458,7 +460,9 @@ def create_model_sdf(args, directory, material_names):
     plugin2_match.text = "87"
     plugin2_output = ET.SubElement(plugin2, "output", 
                                   type="gz.msgs.Double", 
-                                  topic=f"/model/{args.model_name}/link/base_link/track_cmd_vel")
+                                #   topic=f"/model/{args.model_name}/link/base_link/track_cmd_vel"
+                                topic=f"/conveyor/cmd_vel"
+                                  )
     plugin2_output.text = "\n        data: 1.0\n      "
     
     # X key (backward)
@@ -470,7 +474,9 @@ def create_model_sdf(args, directory, material_names):
     plugin3_match.text = "88"
     plugin3_output = ET.SubElement(plugin3, "output", 
                                   type="gz.msgs.Double", 
-                                  topic=f"/model/{args.model_name}/link/base_link/track_cmd_vel")
+                                #   topic=f"/model/{args.model_name}/link/base_link/track_cmd_vel"
+                                topic=f"/conveyor/cmd_vel"
+                                  )
     plugin3_output.text = "\n        data: -1.0\n      "
     
     # S key (stop)
@@ -482,7 +488,9 @@ def create_model_sdf(args, directory, material_names):
     plugin4_match.text = "83"
     plugin4_output = ET.SubElement(plugin4, "output", 
                                   type="gz.msgs.Double", 
-                                  topic=f"/model/{args.model_name}/link/base_link/track_cmd_vel")
+                                #   topic=f"/model/{args.model_name}/link/base_link/track_cmd_vel"
+                                topic=f"/conveyor/cmd_vel"
+                                  )
     plugin4_output.text = "\n        data: 0.0\n      "
     
     # Convert to pretty XML with proper formatting

@@ -275,15 +275,35 @@
       <gravity>1</gravity>
       <kinematic>0</kinematic>
     </link>
+
+    <!--  -->
+    <!-- Track Controller -->
+    <!--  -->
+
+    <!-- Documentation https://gazebosim.org/api/sim/8/classgz_1_1sim_1_1systems_1_1TrackController.html -->
+    <!-- <link>: Name of the link the controller controls. Required parameter.
+    <debug>: If 1, the system will output debugging info and visualizations. The default value is 0.
+    <track_orientation>: Orientation of the track relative to the link. It is assumed that the track moves along the +x direction of the transformed coordinate system. Defaults to no rotation (0 0 0).
+    <velocity_topic>: Name of the topic on which the system accepts velocity commands. Defaults to /model/${model_name}/link/${link_name}/track_cmd_vel.
+    <center_of_rotation_topic>: The topic on which the track accepts center of rotation commands. Defaults to /model/${model_name}/link/${link_name}/track_cmd_center_of_rotation.
+    <max_command_age>: If this parameter is set, each velocity or center of rotation command will only act for the given number of seconds and the track will be stopped if no command arrives before this timeout.
+    <odometry_topic>: The topic on which the track odometry (i.e. position and instantaneous velocity) is published. This can be used e.g. to simulate a conveyor with encoder feedback. Defaults to /model/${model_name}/link/${link_name}/odometry.
+    <odometry_publish_frequency>: the frequency (in Hz) at which the odometry messages are published. Defaults to 50 Hz.
+    <min_velocity>/<max_velocity>: Min/max velocity of the track (m/s). If not specified, the velocity is not limited (however the physics will, in the end, have some implicit limit).
+    <min_acceleration>/<max_acceleration>: Min/max acceleration of the track (m/s^2). If not specified, the acceleration is not limited (however the physics will, in the end, have some implicit limit).
+    <min_jerk>/<max_jerk>: Min/max jerk of the track (m/s^3). If not specified, the acceleration is not limited (however the physics will, in the end, have some implicit limit) -->
+
     <plugin filename="gz-sim-track-controller-system" name="gz::sim::systems::TrackController">
       <link>base_link</link>
+      <track_orientation>0 0 0</track_orientation>
       <odometry_publish_frequency>1</odometry_publish_frequency>
+      <velocity_topic>/conveyor/cmd_vel</velocity_topic>
     </plugin>
     <plugin filename="gz-sim-triggered-publisher-system" name="gz::sim::systems::TriggeredPublisher">
       <input type="gz.msgs.Int32" topic="/keyboard/keypress">
         <match field="data">87</match>
       </input>
-      <output type="gz.msgs.Double" topic="/model/textured_conveyor/link/base_link/track_cmd_vel">
+      <output type="gz.msgs.Double" topic="/conveyor/cmd_vel">
         data: 1.0
       </output>
     </plugin>
@@ -291,7 +311,7 @@
       <input type="gz.msgs.Int32" topic="/keyboard/keypress">
         <match field="data">88</match>
       </input>
-      <output type="gz.msgs.Double" topic="/model/textured_conveyor/link/base_link/track_cmd_vel">
+      <output type="gz.msgs.Double" topic="/conveyor/cmd_vel">
         data: -1.0
       </output>
     </plugin>
@@ -299,7 +319,7 @@
       <input type="gz.msgs.Int32" topic="/keyboard/keypress">
         <match field="data">83</match>
       </input>
-      <output type="gz.msgs.Double" topic="/model/textured_conveyor/link/base_link/track_cmd_vel">
+      <output type="gz.msgs.Double" topic="/conveyor/cmd_vel">
         data: 0.0
       </output>
     </plugin>
