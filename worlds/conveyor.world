@@ -56,14 +56,30 @@
       <pose>0 0 1.0 0 0 0</pose>
     </include>
 
+    <!-- Add the bracket -->
     <include>
-      <uri>model://realsense_d435</uri>
-      <!-- <pose>x y z roll pitch yaw</pose> -->
-      <pose>0 0 2.0 1.5707963267948966 0 0</pose>
+      <uri>model://bracket</uri>
+      <name>bracket</name>
+      <pose>0 0 0.0 0 0 1.5707963267948966</pose>
       <static>true</static>
     </include>
 
-    <!-- GUI plugins - full definitions copied from original file -->
+    <!-- Camera positioned above the bracket's camera mount -->
+    <include>
+      <uri>model://realsense_d435</uri>
+      <name>realsense_d435</name>
+      <pose>0 0 1.98 1.5707963267948966 0 0</pose>
+      <static>false</static>
+    </include>
+
+    <!-- Define the joint between bracket and camera -->
+    <joint name="bracket_camera_joint" type="fixed">
+      <!-- <pose  relative_to='bracket::horizontal_bar'>0 0 0.1 1.5707963267948966 0 0</pose> -->
+      <parent>bracket::horizontal_bar</parent>
+      <child>realsense_d435::link</child>
+    </joint>
+
+    <!-- GUI plugins -->
     <gui fullscreen="0">
       <!-- 3D scene -->
       <plugin filename="MinimalScene" name="3D View">

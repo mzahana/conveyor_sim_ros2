@@ -175,6 +175,8 @@ python conveyor_generator.py --model-name full_custom_conveyor \
 
 This example sets custom textures for the belt, rollers, and legs. If any of the optional metalness or roughness texture files for rollers or legs are not provided, the script will use its default values.
 
+
+**NOTE** You can get free textures from online resources. For example, check [https://ambientcg.com/](https://ambientcg.com/)
 ## Output Files
 
 After running the script, the following will be generated in the specified directory (directory name is the same as the model name):
