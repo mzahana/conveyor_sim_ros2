@@ -15,7 +15,7 @@
     <plugin
       filename="gz-sim-sensors-system"
       name="gz::sim::systems::Sensors">
-      <render_engine>ogre2</render_engine>
+      <render_engine>ogre</render_engine>
     </plugin>
     <plugin
             filename="gz-sim-user-commands-system"
@@ -79,6 +79,19 @@
       <child>realsense_d435::link</child>
     </joint>
 
+    <include>
+      <uri>model://lidar_3d</uri>
+      <name>lidar_3d</name>
+      <pose relative_to='bracket::horizontal_bar'>0.1 0.1 0 1.5707963267948966 0 0</pose>
+      <static>false</static>
+    </include>
+
+    <!-- Define the joint between bracket and lidar -->
+    <joint name="bracket_lidar_joint" type="fixed">
+      <parent>bracket::horizontal_bar</parent>
+      <child>lidar_3d::link</child>
+    </joint>
+
     <!-- GUI plugins -->
     <gui fullscreen="0">
       <!-- 3D scene -->
@@ -89,7 +102,7 @@
           <property type="string" key="state">docked</property>
         </gz-gui>
 
-        <engine>ogre2</engine>
+        <engine>ogre</engine>
         <scene>scene</scene>
         <ambient_light>0.4 0.4 0.4</ambient_light>
         <background_color>0.8 0.8 0.8</background_color>

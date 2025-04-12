@@ -31,7 +31,7 @@ def generate_launch_description():
     else:
         print(f"WARNING: Model path does not exist: {model_path}")
 
-    bridge_config_file = os.path.join(pkg_conveyor_sim, 'config', 'conveyor_bridge.yaml')
+    bridge_config_file = os.path.join(pkg_conveyor_sim, 'config', 'conveyor_gz_ros_bridge.yaml')
 
     # Launch configuration variables
     use_sim_time = LaunchConfiguration('use_sim_time', default='true')
