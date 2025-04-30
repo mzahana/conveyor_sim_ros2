@@ -61,6 +61,11 @@
       <pose>-2.0 0 1.0 0 0 0</pose>
     </include>
 
+    <include>
+      <uri>model://storage_bin</uri>
+      <pose>-6.0 0 1.0 0 0 0</pose>
+    </include>
+
     <!-- Add the bracket -->
     <include>
       <uri>model://bracket</uri>

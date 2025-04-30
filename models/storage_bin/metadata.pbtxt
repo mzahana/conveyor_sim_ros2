@@ -1,0 +1,34 @@
+model {
+  file: "model.sdf"
+}
+name: "Curver_Storage_Bin_Black_Small"
+description: "Curver Storage Bin, Black, Small"
+version: 1
+authors {
+  name: "Google"
+  email: "scanned-objects@google.com"
+}
+legal {
+  copyright: "Copyright 2020 Google LLC."
+  license: "Creative Commons Attribution 4.0 International"
+}
+annotations {
+  key: "brand"
+  value: "Curver"
+}
+annotations {
+  key: "gtin"
+  value: "03253923614091"
+}
+annotations {
+  key: "sku"
+  value: "03253923614091"
+}
+compatibilities {
+  name: "Gazebo"
+  version {
+    major: 11
+  }
+}
+categories {
+}
