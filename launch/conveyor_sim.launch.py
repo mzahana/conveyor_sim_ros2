@@ -12,7 +12,7 @@ def generate_launch_description():
     pkg_conveyor_sim = get_package_share_directory('conveyor_sim_ros2')
 
     # Paths
-    world_file = os.path.join(pkg_conveyor_sim, 'worlds', 'conveyor.world')
+    world_file = os.path.join(pkg_conveyor_sim, 'worlds', 'warehouse.world')
     model_path = os.path.join(pkg_conveyor_sim, 'models')
     
     # Check if model path exists and print it
