@@ -66,7 +66,7 @@
       <pose>-6.0 0 1.0 0 0 0</pose>
     </include>
 
-    <!-- Add the bracket -->
+    <!-- Add the original bracket -->
     <include>
       <uri>model://bracket</uri>
       <name>bracket</name>
@@ -74,21 +74,22 @@
       <static>true</static>
     </include>
 
-    <!-- Camera positioned above the bracket's camera mount -->
-    <include>
+    <!-- Include the existing camera on the original bracket -->
+    <!-- <include>
       <uri>model://realsense_d435</uri>
       <name>realsense_d435</name>
       <pose>-2.0 0 1.98 1.5707963267948966 0 0</pose>
       <static>false</static>
-    </include>
+    </include> -->
 
     <!-- Define the joint between bracket and camera -->
-    <joint name="bracket_camera_joint" type="fixed">
-      <!-- <pose  relative_to='bracket::horizontal_bar'>0 0 0.1 1.5707963267948966 0 0</pose> -->
+    <!-- <pose  relative_to='bracket::horizontal_bar'>0 0 0.1 1.5707963267948966 0 0</pose> -->
+    <!-- <joint name="bracket_camera_joint" type="fixed">
       <parent>bracket::horizontal_bar</parent>
       <child>realsense_d435::link</child>
-    </joint>
+    </joint> -->
 
+    <!-- Include the existing lidar on the original bracket -->
     <include>
       <uri>model://lidar_3d</uri>
       <name>lidar_3d</name>
@@ -100,6 +101,51 @@
     <joint name="bracket_lidar_joint" type="fixed">
       <parent>bracket::horizontal_bar</parent>
       <child>lidar_3d::link</child>
+    </joint>
+
+    <!-- Add the new dual camera bar -->
+    <include>
+      <uri>model://dual_camera_bar</uri>
+      <name>dual_camera_bar</name>
+      <!-- Position it perpendicular to the original bracket -->
+      <pose>-2.0 0 2.0 0 0 0</pose>
+      <static>false</static>
+    </include>
+
+    <!-- Connect the dual camera bar to the original bracket -->
+    <joint name="bracket_to_dual_bar_joint" type="fixed">
+      <parent>bracket::horizontal_bar</parent>
+      <child>dual_camera_bar::horizontal_bar</child>
+    </joint>
+
+    <!-- Left Camera on the dual camera bar -->
+    <include>
+      <uri>model://realsense_d435</uri>
+      <name>left_camera</name>
+      <!-- Positioned at the left end of the bar, angled toward the conveyor -->
+      <pose degrees="true" relative_to='dual_camera_bar::left_camera_mount'>0 0 -0.05 45 0 90</pose>
+      <static>false</static>
+    </include>
+
+    <!-- Joint between left camera mount and left camera -->
+    <joint name="left_camera_joint" type="fixed">
+      <parent>dual_camera_bar::left_camera_mount</parent>
+      <child>left_camera::link</child>
+    </joint>
+
+    <!-- Right Camera on the dual camera bar -->
+    <include>
+      <uri>model://realsense_d435</uri>
+      <name>right_camera</name>
+      <!-- Positioned at the right end of the bar, angled toward the conveyor -->
+      <pose degrees="true" relative_to='dual_camera_bar::right_camera_mount'>0 0 -0.05 45 0 -90</pose>
+      <static>false</static>
+    </include>
+
+    <!-- Joint between right camera mount and right camera -->
+    <joint name="right_camera_joint" type="fixed">
+      <parent>dual_camera_bar::right_camera_mount</parent>
+      <child>right_camera::link</child>
     </joint>
 
     <!-- Warehouse -->

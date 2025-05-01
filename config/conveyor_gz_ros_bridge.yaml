@@ -4,20 +4,64 @@
   gz_type_name: "gz.msgs.Double"
   direction: ROS_TO_GZ
 
-- ros_topic_name: "/realsense_d435/image"
-  gz_topic_name: "/realsense_d435/image"
+# - ros_topic_name: "/realsense_d435/image"
+#   gz_topic_name: "/realsense_d435/image"
+#   ros_type_name: "sensor_msgs/msg/Image"
+#   gz_type_name: "gz.msgs.Image"
+#   direction: GZ_TO_ROS
+
+# - ros_topic_name: "/realsense_d435/depth_image"
+#   gz_topic_name: "/realsense_d435/depth_image"
+#   ros_type_name: "sensor_msgs/msg/Image"
+#   gz_type_name: "gz.msgs.Image"
+#   direction: GZ_TO_ROS
+
+# - ros_topic_name: "/realsense_d435/points"
+#   gz_topic_name: "/realsense_d435/points"
+#   ros_type_name: "sensor_msgs/msg/PointCloud2"
+#   gz_type_name: "gz.msgs.PointCloudPacked"
+#   direction: GZ_TO_ROS
+
+
+#
+# Left camera
+#
+- ros_topic_name: "/realsense_d435/left/image"
+  gz_topic_name: "/world/warehouse/model/left_camera/link/link/sensor/realsense_d435/image"
   ros_type_name: "sensor_msgs/msg/Image"
   gz_type_name: "gz.msgs.Image"
   direction: GZ_TO_ROS
 
-- ros_topic_name: "/realsense_d435/depth_image"
-  gz_topic_name: "/realsense_d435/depth_image"
+- ros_topic_name: "/realsense_d435/left/depth_image"
+  gz_topic_name: "/world/warehouse/model/left_camera/link/link/sensor/realsense_d435/depth_image"
   ros_type_name: "sensor_msgs/msg/Image"
   gz_type_name: "gz.msgs.Image"
   direction: GZ_TO_ROS
 
-- ros_topic_name: "/realsense_d435/points"
-  gz_topic_name: "/realsense_d435/points"
+- ros_topic_name: "/realsense_d435/left/points"
+  gz_topic_name: "/world/warehouse/model/left_camera/link/link/sensor/realsense_d435/points"
+  ros_type_name: "sensor_msgs/msg/PointCloud2"
+  gz_type_name: "gz.msgs.PointCloudPacked"
+  direction: GZ_TO_ROS
+
+
+#
+# Right camera
+#
+- ros_topic_name: "/realsense_d435/right/image"
+  gz_topic_name: "/world/warehouse/model/right_camera/link/link/sensor/realsense_d435/image"
+  ros_type_name: "sensor_msgs/msg/Image"
+  gz_type_name: "gz.msgs.Image"
+  direction: GZ_TO_ROS
+
+- ros_topic_name: "/realsense_d435/right/depth_image"
+  gz_topic_name: "/world/warehouse/model/right_camera/link/link/sensor/realsense_d435/depth_image"
+  ros_type_name: "sensor_msgs/msg/Image"
+  gz_type_name: "gz.msgs.Image"
+  direction: GZ_TO_ROS
+
+- ros_topic_name: "/realsense_d435/right/points"
+  gz_topic_name: "/world/warehouse/model/right_camera/link/link/sensor/realsense_d435/points"
   ros_type_name: "sensor_msgs/msg/PointCloud2"
   gz_type_name: "gz.msgs.PointCloudPacked"
   direction: GZ_TO_ROS

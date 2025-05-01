@@ -1,0 +1,126 @@
+<?xml version="1.0" ?>
+<sdf version="1.7">
+  <model name="dual_camera_bar">
+    <static>false</static>
+    
+    <!-- Main horizontal bar -->
+    <link name="horizontal_bar">
+      <pose>0 0 0 0 0 0</pose>
+      <inertial>
+        <mass>1.0</mass>
+        <inertia>
+          <ixx>0.01</ixx>
+          <iyy>0.083</iyy>
+          <izz>0.083</izz>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyz>0</iyz>
+        </inertia>
+      </inertial>
+      
+      <collision name="collision">
+        <geometry>
+          <box>
+            <size>1.0 0.05 0.05</size>
+          </box>
+        </geometry>
+      </collision>
+      
+      <visual name="visual">
+        <geometry>
+          <box>
+            <size>1.0 0.05 0.05</size>
+          </box>
+        </geometry>
+        <material>
+          <ambient>0.3 0.3 0.3 1</ambient>
+          <diffuse>0.7 0.7 0.7 1</diffuse>
+          <specular>1 1 1 1</specular>
+        </material>
+      </visual>
+    </link>
+    
+    <!-- Left camera mount point (will be connected to a camera in the world file) -->
+    <link name="left_camera_mount">
+      <pose relative_to="horizontal_bar">-0.5 0 0 0 0 0</pose>
+      <inertial>
+        <mass>0.1</mass>
+        <inertia>
+          <ixx>0.001</ixx>
+          <iyy>0.001</iyy>
+          <izz>0.001</izz>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyz>0</iyz>
+        </inertia>
+      </inertial>
+      
+      <collision name="collision">
+        <geometry>
+          <box>
+            <size>0.02 0.02 0.02</size>
+          </box>
+        </geometry>
+      </collision>
+      
+      <visual name="visual">
+        <geometry>
+          <box>
+            <size>0.02 0.02 0.02</size>
+          </box>
+        </geometry>
+        <material>
+          <ambient>1 0 0 1</ambient>
+          <diffuse>1 0 0 1</diffuse>
+        </material>
+      </visual>
+    </link>
+    
+    <!-- Right camera mount point (will be connected to a camera in the world file) -->
+    <link name="right_camera_mount">
+      <pose relative_to="horizontal_bar">0.5 0 0 0 0 0</pose>
+      <inertial>
+        <mass>0.1</mass>
+        <inertia>
+          <ixx>0.001</ixx>
+          <iyy>0.001</iyy>
+          <izz>0.001</izz>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyz>0</iyz>
+        </inertia>
+      </inertial>
+      
+      <collision name="collision">
+        <geometry>
+          <box>
+            <size>0.02 0.02 0.02</size>
+          </box>
+        </geometry>
+      </collision>
+      
+      <visual name="visual">
+        <geometry>
+          <box>
+            <size>0.02 0.02 0.02</size>
+          </box>
+        </geometry>
+        <material>
+          <ambient>1 0 0 1</ambient>
+          <diffuse>1 0 0 1</diffuse>
+        </material>
+      </visual>
+    </link>
+    
+    <!-- Fixed joints between the bar and camera mount points -->
+    <joint name="left_mount_joint" type="fixed">
+      <parent>horizontal_bar</parent>
+      <child>left_camera_mount</child>
+    </joint>
+    
+    <joint name="right_mount_joint" type="fixed">
+      <parent>horizontal_bar</parent>
+      <child>right_camera_mount</child>
+    </joint>
+  </model>
+</sdf>

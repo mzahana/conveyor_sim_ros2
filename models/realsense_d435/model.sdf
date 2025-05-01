@@ -98,7 +98,7 @@
           </noise>
         </camera>
         <always_on>1</always_on>
-        <topic>realsense_d435</topic>
+        <!-- <topic>realsense_d435</topic> -->
         <visualize>true</visualize>
         <enable_metrics>true</enable_metrics>
       </sensor>
