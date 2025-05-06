@@ -1,34 +1,135 @@
 <?xml version="1.0" ?>
 <sdf version="1.7">
   <world name="warehouse">
-
-    <!-- Physics, plugins, scene, lights... -->
-    <physics name="4ms" type="ode">
+    <physics type="ode">
       <max_step_size>0.004</max_step_size>
       <real_time_factor>1.0</real_time_factor>
+      <real_time_update_rate>250</real_time_update_rate>
     </physics>
-
-    <plugin
-            filename="gz-sim-physics-system"
-            name="gz::sim::systems::Physics">
-    </plugin>
-    <plugin
-      filename="gz-sim-sensors-system"
-      name="gz::sim::systems::Sensors">
+    <plugin name='gz::sim::systems::Physics' filename='gz-sim-physics-system'/>
+    <plugin name='gz::sim::systems::UserCommands' filename='gz-sim-user-commands-system'/>
+    <plugin name='gz::sim::systems::SceneBroadcaster' filename='gz-sim-scene-broadcaster-system'/>
+    <plugin name='gz::sim::systems::Contact' filename='gz-sim-contact-system'/>
+    <!-- <plugin name='gz::sim::systems::Imu' filename='gz-sim-imu-system'/> -->
+    <plugin name='gz::sim::systems::ApplyLinkWrench' filename='gz-sim-apply-link-wrench-system'/>
+    <plugin name='gz::sim::systems::Sensors' filename='gz-sim-sensors-system'>
       <render_engine>ogre2</render_engine>
     </plugin>
-    <plugin
-            filename="gz-sim-user-commands-system"
-            name="gz::sim::systems::UserCommands">
-    </plugin>
-    <plugin
-            filename="gz-sim-scene-broadcaster-system"
-            name="gz::sim::systems::SceneBroadcaster">
-    </plugin>
+    <gui fullscreen='false'>
+      <plugin name='3D View' filename='GzScene3D'>
+        <gz-gui>
+          <title>3D View</title>
+          <property type='bool' key='showTitleBar'>0</property>
+          <property type='string' key='state'>docked</property>
+        </gz-gui>
+        <engine>ogre2</engine>
+        <scene>scene</scene>
+        <ambient_light>0.5984631152222222 0.5984631152222222 0.5984631152222222</ambient_light>
+        <background_color>0.8984631152222222 0.8984631152222222 0.8984631152222222</background_color>
+        <!-- <camera_clip>
+          <near>0.25</near>
+          <far>50000</far>
+        </camera_clip> -->
+        <camera_pose>-23 -45.4 34.5 0.0 0.54 1.11</camera_pose>
+      </plugin>
+      
+      <!-- Insert simple shapes -->
+      <plugin filename="Shapes" name="Shapes">
+          <gz-gui>
+              <anchors target="Transform control">
+                  <line own="left" target="right"/>
+                  <line own="top" target="top"/>
+              </anchors>
+              <property key="resizable" type="bool">false</property>
+              <property key="width" type="double">200</property>
+              <property key="height" type="double">50</property>
+              <property key="state" type="string">floating</property>
+              <property key="showTitleBar" type="bool">false</property>
+              <property key="cardBackground" type="string">#666666</property>
+          </gz-gui>
+      </plugin>
+
+      <plugin name='World control' filename='WorldControl'>
+        <gz-gui>
+          <title>World control</title>
+          <property type='bool' key='showTitleBar'>0</property>
+          <property type='bool' key='resizable'>0</property>
+          <property type='double' key='height'>72</property>
+          <property type='double' key='width'>121</property>
+          <property type='double' key='z'>1</property>
+          <property type='string' key='state'>floating</property>
+          <anchors target='3D View'>
+            <line own='left' target='left'/>
+            <line own='bottom' target='bottom'/>
+          </anchors>
+        </gz-gui>
+        <play_pause>1</play_pause>
+        <step>1</step>
+        <start_paused>1</start_paused>
+      </plugin>
+      
+      <plugin name='World stats' filename='WorldStats'>
+        <gz-gui>
+          <title>World stats</title>
+          <property type='bool' key='showTitleBar'>0</property>
+          <property type='bool' key='resizable'>0</property>
+          <property type='double' key='height'>110</property>
+          <property type='double' key='width'>290</property>
+          <property type='double' key='z'>1</property>
+          <property type='string' key='state'>floating</property>
+          <anchors target='3D View'>
+            <line own='right' target='right'/>
+            <line own='bottom' target='bottom'/>
+          </anchors>
+        </gz-gui>
+        <sim_time>1</sim_time>
+        <real_time>1</real_time>
+        <real_time_factor>1</real_time_factor>
+        <iterations>1</iterations>
+      </plugin>
+
+      <plugin name='Entity tree' filename='EntityTree'/>
+
+      <plugin filename="KeyPublisher" name="Key publisher">
+          <gz-gui>
+              <anchors target="3D View">
+                  <line own="right" target="right"/>
+                  <line own="top" target="top"/>
+              </anchors>
+              <property key="resizable" type="bool">false</property>
+              <property key="width" type="double">5</property>
+              <property key="height" type="double">5</property>
+              <property key="state" type="string">floating</property>
+              <property key="showTitleBar" type="bool">false</property>
+          </gz-gui>
+      </plugin>
+
+      <!-- Translate / rotate -->
+      <plugin filename="TransformControl" name="Transform control">
+          <gz-gui>
+              <title>Transform control</title>
+              <anchors target="3D View">
+                  <line own="left" target="left"/>
+                  <line own="top" target="top"/>
+              </anchors>
+              <property key="resizable" type="bool">false</property>
+              <property key="width" type="double">230</property>
+              <property key="height" type="double">50</property>
+              <property key="state" type="string">floating</property>
+              <property key="showTitleBar" type="bool">false</property>
+              <property key="cardBackground" type="string">#666666</property>
+          </gz-gui>
+      </plugin>
+
+    </gui>
+
+    <gravity>0 0 -9.8</gravity>
 
     <scene>
       <ambient>1.0 1.0 1.0</ambient>
       <background>0.8 0.8 0.8</background>
+      <shadows>true</shadows>
+      <grid>false</grid>
     </scene>
 
     <light type="directional" name="sun">
@@ -61,16 +162,16 @@
       <pose>-2.0 0 1.0 0 0 0</pose>
     </include>
 
-    <include>
+    <!-- <include>
       <uri>model://storage_bin</uri>
       <pose>-6.0 0 1.0 0 0 0</pose>
-    </include>
+    </include> -->
 
     <!-- Add the original bracket -->
     <include>
       <uri>model://bracket</uri>
       <name>bracket</name>
-      <pose>-2.0 0 0.0 0 0 1.5707963267948966</pose>
+      <pose degrees="true">-2.0 0 0.0 0 0 90</pose>
       <static>true</static>
     </include>
 
@@ -93,7 +194,7 @@
     <include>
       <uri>model://lidar_3d</uri>
       <name>lidar_3d</name>
-      <pose relative_to='bracket::horizontal_bar'>0.1 0.1 0 1.5707963267948966 0 0</pose>
+      <pose degrees="true" relative_to='bracket::horizontal_bar'>0.1 0.1 0 90 0 0</pose>
       <static>false</static>
     </include>
 
@@ -104,11 +205,11 @@
     </joint>
 
     <!-- Add the new dual camera bar -->
+    <!-- Position it perpendicular to the original bracket -->
     <include>
       <uri>model://dual_camera_bar</uri>
       <name>dual_camera_bar</name>
-      <!-- Position it perpendicular to the original bracket -->
-      <pose>-2.0 0 2.0 0 0 0</pose>
+      <pose degrees="true" relative_to='bracket::horizontal_bar'>0 0 0 0 0 -90</pose>
       <static>false</static>
     </include>
 
@@ -119,11 +220,11 @@
     </joint>
 
     <!-- Left Camera on the dual camera bar -->
+    <!-- Positioned at the left end of the bar, angled toward the conveyor -->
     <include>
       <uri>model://realsense_d435</uri>
       <name>left_camera</name>
-      <!-- Positioned at the left end of the bar, angled toward the conveyor -->
-      <pose degrees="true" relative_to='dual_camera_bar::left_camera_mount'>0 0 -0.05 45 0 90</pose>
+      <pose degrees="true" relative_to='dual_camera_bar::left_camera_mount'>0 0 -0.05 0 45 0</pose>
       <static>false</static>
     </include>
 
@@ -134,11 +235,11 @@
     </joint>
 
     <!-- Right Camera on the dual camera bar -->
+    <!-- Positioned at the right end of the bar, angled toward the conveyor -->
     <include>
       <uri>model://realsense_d435</uri>
       <name>right_camera</name>
-      <!-- Positioned at the right end of the bar, angled toward the conveyor -->
-      <pose degrees="true" relative_to='dual_camera_bar::right_camera_mount'>0 0 -0.05 45 0 -90</pose>
+      <pose degrees="true" relative_to='dual_camera_bar::right_camera_mount'>0 0 -0.05 0 45 180</pose>
       <static>false</static>
     </include>
 
@@ -156,164 +257,5 @@
       <!-- <static>false</static> -->
     </include>
 
-    <!-- GUI plugins -->
-    <gui fullscreen="0">
-      <!-- 3D scene -->
-      <plugin filename="MinimalScene" name="3D View">
-        <gz-gui>
-          <title>3D View</title>
-          <property type="bool" key="showTitleBar">false</property>
-          <property type="string" key="state">docked</property>
-        </gz-gui>
-
-        <engine>ogre2</engine>
-        <scene>scene</scene>
-        <ambient_light>0.4 0.4 0.4</ambient_light>
-        <background_color>0.8 0.8 0.8</background_color>
-        <camera_pose>-6 0 6 0 0.5 0</camera_pose>
-      </plugin>
-
-      <!-- Plugins that add functionality to the scene -->
-      <plugin filename="EntityContextMenuPlugin" name="Entity context menu">
-        <gz-gui>
-          <property key="state" type="string">floating</property>
-          <property key="width" type="double">5</property>
-          <property key="height" type="double">5</property>
-          <property key="showTitleBar" type="bool">false</property>
-        </gz-gui>
-      </plugin>
-      <plugin filename="GzSceneManager" name="Scene Manager">
-        <gz-gui>
-          <property key="resizable" type="bool">false</property>
-          <property key="width" type="double">5</property>
-          <property key="height" type="double">5</property>
-          <property key="state" type="string">floating</property>
-          <property key="showTitleBar" type="bool">false</property>
-        </gz-gui>
-      </plugin>
-      <plugin filename="InteractiveViewControl" name="Interactive view control">
-        <gz-gui>
-          <property key="resizable" type="bool">false</property>
-          <property key="width" type="double">5</property>
-          <property key="height" type="double">5</property>
-          <property key="state" type="string">floating</property>
-          <property key="showTitleBar" type="bool">false</property>
-        </gz-gui>
-      </plugin>
-      <plugin filename="CameraTracking" name="Camera Tracking">
-        <gz-gui>
-          <property key="resizable" type="bool">false</property>
-          <property key="width" type="double">5</property>
-          <property key="height" type="double">5</property>
-          <property key="state" type="string">floating</property>
-          <property key="showTitleBar" type="bool">false</property>
-        </gz-gui>
-      </plugin>
-
-      <plugin name='World control' filename='WorldControl'>
-          <gz-gui>
-              <title>World control</title>
-              <property type='bool' key='showTitleBar'>0</property>
-              <property type='bool' key='resizable'>0</property>
-              <property type='double' key='height'>72</property>
-              <property type='double' key='width'>150</property>
-              <property type='double' key='z'>1</property>
-              <property type='string' key='state'>floating</property>
-              <anchors target='3D View'>
-                  <line own='left' target='left'/>
-                  <line own='bottom' target='bottom'/>
-              </anchors>
-          </gz-gui>
-          <play_pause>1</play_pause>
-          <step>1</step>
-          <start_paused>0</start_paused>
-      </plugin>
-
-      <!-- World statistics -->
-      <plugin filename="WorldStats" name="World stats">
-          <gz-gui>
-              <title>World stats</title>
-              <property type="bool" key="showTitleBar">false</property>
-              <property type="bool" key="resizable">false</property>
-              <property type="double" key="height">110</property>
-              <property type="double" key="width">290</property>
-              <property type="double" key="z">1</property>
-
-              <property type="string" key="state">floating</property>
-              <anchors target="3D View">
-                  <line own="right" target="right"/>
-                  <line own="bottom" target="bottom"/>
-              </anchors>
-          </gz-gui>
-
-          <sim_time>true</sim_time>
-          <real_time>true</real_time>
-          <real_time_factor>true</real_time_factor>
-          <iterations>true</iterations>
-      </plugin>
-
-      <!-- Translate / rotate -->
-      <plugin filename="TransformControl" name="Transform control">
-          <gz-gui>
-              <title>Transform control</title>
-              <anchors target="3D View">
-                  <line own="left" target="left"/>
-                  <line own="top" target="top"/>
-              </anchors>
-              <property key="resizable" type="bool">false</property>
-              <property key="width" type="double">230</property>
-              <property key="height" type="double">50</property>
-              <property key="state" type="string">floating</property>
-              <property key="showTitleBar" type="bool">false</property>
-              <property key="cardBackground" type="string">#666666</property>
-          </gz-gui>
-      </plugin>
-
-      <!-- Insert simple shapes -->
-      <plugin filename="Shapes" name="Shapes">
-          <gz-gui>
-              <anchors target="Transform control">
-                  <line own="left" target="right"/>
-                  <line own="top" target="top"/>
-              </anchors>
-              <property key="resizable" type="bool">false</property>
-              <property key="width" type="double">200</property>
-              <property key="height" type="double">50</property>
-              <property key="state" type="string">floating</property>
-              <property key="showTitleBar" type="bool">false</property>
-              <property key="cardBackground" type="string">#666666</property>
-          </gz-gui>
-      </plugin>
-
-      <plugin filename="KeyPublisher" name="Key publisher">
-          <gz-gui>
-              <anchors target="3D View">
-                  <line own="right" target="right"/>
-                  <line own="top" target="top"/>
-              </anchors>
-              <property key="resizable" type="bool">false</property>
-              <property key="width" type="double">5</property>
-              <property key="height" type="double">5</property>
-              <property key="state" type="string">floating</property>
-              <property key="showTitleBar" type="bool">false</property>
-          </gz-gui>
-      </plugin>
-
-      <plugin filename="VisualizeContacts" name="Visualize Contacts">
-          <gz-gui>
-              <title>Visualize Contacts</title>
-              <anchors target="3D View">
-                  <line own="right" target="right"/>
-                  <line own="top" target="top"/>
-              </anchors>
-              <property key="resizable" type="bool">false</property>
-              <property key="width" type="double">230</property>
-              <property key="height" type="double">50</property>
-              <property key="state" type="string">floating</property>
-              <property key="showTitleBar" type="bool">false</property>
-              <property key="cardBackground" type="string">#ffffff</property>
-          </gz-gui>
-      </plugin>
-    </gui>
   </world>
 </sdf>
