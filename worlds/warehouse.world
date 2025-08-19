@@ -2,9 +2,10 @@
 <sdf version="1.7">
   <world name="warehouse">
     <physics type="ode">
-      <max_step_size>0.004</max_step_size>
+      <max_step_size>0.01</max_step_size>
       <real_time_factor>1.0</real_time_factor>
-      <real_time_update_rate>250</real_time_update_rate>
+      <real_time_update_rate>100</real_time_update_rate>
+      <max_contacts>20</max_contacts>  <!-- Limit contacts -->
     </physics>
     <plugin name='gz::sim::systems::Physics' filename='gz-sim-physics-system'/>
     <plugin name='gz::sim::systems::UserCommands' filename='gz-sim-user-commands-system'/>
@@ -14,6 +15,7 @@
     <plugin name='gz::sim::systems::ApplyLinkWrench' filename='gz-sim-apply-link-wrench-system'/>
     <plugin name='gz::sim::systems::Sensors' filename='gz-sim-sensors-system'>
       <render_engine>ogre2</render_engine>
+      <background_color>0.8 0.8 0.8</background_color> <!-- NEW -->
     </plugin>
     <gui fullscreen='false'>
       <plugin name='3D View' filename='GzScene3D'>
@@ -30,6 +32,12 @@
           <near>0.25</near>
           <far>50000</far>
         </camera_clip> -->
+
+        <camera_clip>
+          <near>0.1</near>
+          <far>500</far>
+        </camera_clip>
+
         <camera_pose>-23 -45.4 34.5 0.0 0.54 1.11</camera_pose>
       </plugin>
       
@@ -128,12 +136,12 @@
     <scene>
       <ambient>1.0 1.0 1.0</ambient>
       <background>0.8 0.8 0.8</background>
-      <shadows>true</shadows>
+      <shadows>false</shadows>  <!-- Disable shadows for better performance -->
       <grid>false</grid>
     </scene>
 
     <light type="directional" name="sun">
-      <cast_shadows>true</cast_shadows>
+      <cast_shadows>false</cast_shadows>  <!-- Disable shadow casting -->
       <pose>0 0 10 0 0 0</pose>
       <diffuse>0.8 0.8 0.8 1</diffuse>
       <specular>0.8 0.8 0.8 1</specular>

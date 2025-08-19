@@ -9,6 +9,15 @@ This ROS 2 package provides a simulation of a conveyor belt in Gazebo Harmonic w
 - Gazebo Harmonic (does not work with earlier versions of Gazebo)
 - ros_gz_bridge package
 
+### Recommended Setup
+* Ubuntu 24.04
+* ROS 2 `jazzy`. [Installation instructions](https://docs.ros.org/en/jazzy/Installation.html)
+* Gazebo `harmonic`. [Installation instructions](https://gazebosim.org/docs/harmonic/install_ubuntu/)
+* ROS/Gazebo interface packages
+   ```sh
+   sudo apt-get install ros-jazzy-ros-gz
+   ```
+
 ## Building the Package
 
 1. Create a ROS 2 workspace (if you don't have one already):
