@@ -136,12 +136,12 @@
     <scene>
       <ambient>1.0 1.0 1.0</ambient>
       <background>0.8 0.8 0.8</background>
-      <shadows>false</shadows>  <!-- Disable shadows for better performance -->
+      <shadows>true</shadows>  <!-- Disable shadows for better performance -->
       <grid>false</grid>
     </scene>
 
     <light type="directional" name="sun">
-      <cast_shadows>false</cast_shadows>  <!-- Disable shadow casting -->
+      <cast_shadows>true</cast_shadows>  <!-- Disable shadow casting -->
       <pose>0 0 10 0 0 0</pose>
       <diffuse>0.8 0.8 0.8 1</diffuse>
       <specular>0.8 0.8 0.8 1</specular>
